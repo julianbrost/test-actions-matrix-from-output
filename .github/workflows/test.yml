@@ -6,8 +6,11 @@ on:
 jobs:
   get_matrix:
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.foo.outputs.matrix }}
     steps:
-      - uses: julianbrost/test-actions-set-matrix-output@main
+      - id: foo
+        uses: julianbrost/test-actions-set-matrix-output@main
   test:
     name: ${{ matrix.database.name }}
     needs: get_matrix
