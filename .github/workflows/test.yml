@@ -5,7 +5,9 @@ on:
 
 jobs:
   get_matrix:
-    uses: julianbrost/test-actions-set-matrix-output@main
+    runs-on: ubuntu-latest
+    steps:
+      - uses: julianbrost/test-actions-set-matrix-output@main
   test:
     name: ${{ matrix.database.name }}
     needs: get_matrix
