@@ -5,7 +5,7 @@ on:
 
 jobs:
   get_matrix:
-    uses: julianbrost/test-actions-set-matrix-output
+    uses: julianbrost/test-actions-set-matrix-output@main
   test:
     name: ${{ matrix.database.name }}
     needs: get_matrix
