@@ -11,6 +11,10 @@ jobs:
     steps:
       - id: foo
         uses: julianbrost/test-actions-set-matrix-output@main
+        
+      - shell: bash
+        run: echo '${{ steps.foo.outputs.matrix }}'
+
   test:
     name: ${{ matrix.database.name }}
     needs: get_matrix
@@ -22,5 +26,5 @@ jobs:
         database: ${{ fromJSON(needs.get_matrix.outputs.matrix) }}
 
     steps:
-      - name: Download dependencies
+      - shell: bash
         run: echo ${{ matrix.database.image }}
