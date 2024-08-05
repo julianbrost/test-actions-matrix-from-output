@@ -1,0 +1,21 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  get_matrix:
+    uses: julianbrost/test-actions-set-matrix-output
+  test:
+    name: ${{ matrix.database.name }}
+    needs: get_matrix
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        database: ${{ fromJSON(needs.get_matrix.outputs.matrix) }}
+
+    steps:
+      - name: Download dependencies
+        run: echo ${{ matrix.database.image }}
