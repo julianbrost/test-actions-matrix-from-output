@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        database: ${{ fromJSON(needs.get_matrix.outputs.matrix) }}
+        database: ${{ fromJSON(needs.matrix.outputs.matrix) }}
 
     steps:
       - shell: bash
